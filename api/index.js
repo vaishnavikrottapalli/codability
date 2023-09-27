@@ -6,6 +6,7 @@ const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
 const submissionRoute = require("./routes/submissions");
 const problemRoute = require("./routes/problems");
+const testcaseRoute = require("./routes/testcases");
 
 dotenv.config();
 app.use(express.json());
@@ -21,6 +22,7 @@ app.use("/api/auth",authRoute);
 app.use("/api/users",userRoute);
 app.use("/api/submissions",submissionRoute);
 app.use("/api/problems",problemRoute);
+app.use("/api/testcases",testcaseRoute);
 
 app.listen("5000", ()=>{
     console.log("backend is running on 5000")

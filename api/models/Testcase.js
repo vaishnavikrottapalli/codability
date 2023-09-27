@@ -1,7 +1,7 @@
 const mongoose  = require("mongoose");
 
 const TCSchema = new mongoose.Schema({
-    probname:{
+    title:{
         type: String,
         required: true
     },
