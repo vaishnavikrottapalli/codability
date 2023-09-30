@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.probsolve{
+    background-color: rgb(74, 74, 147);
+    text-align: center;
+    color: white;
+}
+.probsec{
+    display: flex;
+    padding-left: 10px;
+    justify-content: space-between;
+    background-color: rgb(169, 186, 200);
+}
+.probdetails{
+    width: 45%;
+    height:80%;
+}
+.codesec{
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.codesec .buttons{
+    display: flex;
+    justify-content:flex-end;
+    align-items: center;
+    margin: 10px;
+}
+
+.style-link{
+    color: black;
+}

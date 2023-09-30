@@ -1,0 +1,36 @@
+
+*{
+    margin: 0;
+    padding: 0;
+}
+.wrapper{
+    background-color:rgb(74, 74, 147);
+    color: white;
+}
+.wrapper > h2{
+    text-align: center;
+}
+
+.wrapper>p{
+    font-size: large;
+    text-align: center;
+}
+
+.wrapper>.forminp{
+    background-color: rgb(169, 186, 200);
+    color: black;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    padding: 10px;
+    font-size: larger;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.forminp button{
+    margin-top: 10px;
+    width: 90px;
+    height: 30px;
+    font-size: large;
+}

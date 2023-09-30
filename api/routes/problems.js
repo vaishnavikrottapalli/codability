@@ -21,12 +21,13 @@ router.delete("/:id", async(req,res)=>{
     try {
         const problem = await Problem.findById(req.params.id);
         console.log(problem);
-        console.log(problem.username, req.body.username);
-        // const submission = await Submission.findById(req.params.id);
-        if(problem.username === req.body.username){
+        console.log(req.body);
+        const id = problem.userID.toString();
+        console.log(id, req.body.userID);
+        if(id === req.body.userID){
             try{
-                // await submission.deleteMany({title: problem.title});
-                await problem.delete();
+                await Submission.deleteMany({title: problem.title});
+                await Problem.findByIdAndDelete(req.params.id);
                 res.status(200).json("problem has been deleted");        
             } catch(err){
                 res.status(500).json(err);
@@ -59,7 +60,7 @@ router.get("/",async(req,res)=>{
     try {
         let problems;
         if(diffi){
-            problems = await Problem.find({diffi})
+            problems = await Problem.find({difficulty: {$in: diffi}})
         } else if(cat){
             problems = await Problem.find({tags:{
                 $in : [cat]

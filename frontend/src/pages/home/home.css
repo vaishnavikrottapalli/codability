@@ -1,12 +1,49 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.table-container {
+    max-width: 800px; /* Adjust the max width as needed */
+    margin: 0 auto;
+    padding: 20px;
 }
 
-.home{
+/* Your table styles here */
+table {
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    border-collapse: collapse;
+    border: 1px solid #dcdcdc;
+}
 
-    display: flex;
-    background-color: aqua;
-    flex-direction: column;
+th, td {
+    border: 1px solid #dcdcdc;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #f5f5f5;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.tag {
+    background-color: #007bff;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.difficulty {
+    background-color: #28a745;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.status {
+    background-color: #ffc107;
+    color: #212529;
+    padding: 4px 8px;
+    border-radius: 4px;
 }

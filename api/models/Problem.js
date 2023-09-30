@@ -3,7 +3,19 @@ const mongoose  = require("mongoose");
 const ProblemSchema = new mongoose.Schema({
     username:{
         type: String,
-        required: true
+        required: true,
+        validate: {
+            validator: async function (value) {
+              const user = await mongoose.model('User').findOne({ username: value });
+              return !!user;
+            },
+            message: 'Invalid username. No user found with this name.',
+          },
+    },
+    userID:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
     },
     title:{
         type: String,

@@ -5,6 +5,11 @@ const TCSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    probID:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Problem',
+        required: true,
+    },
     input:{
         type: String,
         required: true
