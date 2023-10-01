@@ -1,6 +1,8 @@
 import React from 'react'
 import "./contribute.css"
 import { useState } from 'react';
+import Topbar from "../../components/topbar/Topbar";
+
 
 export default function Contribute() {
 
@@ -10,7 +12,9 @@ export default function Contribute() {
   }
   return (
     <div className = "wrapper">
-        <h2>Constribute</h2>
+        <Topbar></Topbar>
+        <div class="topbar-placeholder"></div>
+        <h2>Contribute</h2>
         <br />
         <p>Hey Geeks,<br></br> Want to contribute problems to our community and challenge you fellow geeks?
         <br /> GO Ahead! We give you full fuel!!</p>

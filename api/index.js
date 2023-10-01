@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require('cors');
 const app = express();
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
@@ -9,6 +10,11 @@ const problemRoute = require("./routes/problems");
 const testcaseRoute = require("./routes/testcases");
 
 dotenv.config();
+const corsOptions = {
+    origin: '*', // or specify your frontend URL like 'http://localhost:3000'
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  };
+app.use(cors(corsOptions));
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URL,{

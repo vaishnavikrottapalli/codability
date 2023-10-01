@@ -1,3 +1,5 @@
+import React from "react";
+import { Link } from "react-router-dom";
 import "./topbar.css"
 
 export default function Topbar() {
@@ -9,21 +11,11 @@ export default function Topbar() {
                 CodeVerse
                 </a>
                 <div className="nav-button">
-                    <a href="#" className="about-contact">
-                        Problems
-                    </a>
-                    <a href="#" className="about-contact">
-                        Contribute
-                    </a>
-                    <a href="#" className="about-contact">
-                        About
-                    </a>
-                    <a href="#" className="about-contact">
-                        Contact Us
-                    </a>
-                    <button className="btn" id="signupBtn">
-                        Sign out
-                    </button>
+                    <Link className="about-contact" to="/">Problems</Link>
+                    <Link className="about-contact" to="/contribute">Contribute</Link>
+                    <Link className="about-contact" to="/about">About</Link>
+                    <Link className="about-contact" to="/contactus">Contact Us</Link>
+                    <button className="btn" id="signupBtn"> Sign out </button>
                 </div>
             </header>
         </div>

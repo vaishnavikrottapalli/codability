@@ -2,15 +2,15 @@
     margin: 0;
     padding: 0;
 }
-.probsolve{
-    background-color: rgb(74, 74, 147);
+.probsolve > h1{
+    margin-top: 30px;
     text-align: center;
     color: white;
 }
 .probsec{
     display: flex;
     padding-left: 10px;
-    justify-content: space-between;
+    justify-content: space-around;
     background-color: rgb(169, 186, 200);
 }
 .probdetails{
@@ -31,5 +31,9 @@
 }
 
 .style-link{
+    color: white;
+    text-decoration: none;
+}
+.style-link:hover{
     color: black;
 }

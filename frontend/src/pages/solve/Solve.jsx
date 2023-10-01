@@ -1,19 +1,37 @@
-import React from 'react'
+import Topbar from "../../components/topbar/Topbar";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import "./solve.css"
 
+
 export default function Solve() {
+    const [problemData, setproblemData] = useState([]);
+    const { problemId } = useParams();
+    console.log("problemId ",problemId);
+    useEffect(() => {
+        fetch(`http://localhost:5000/api/problems/${problemId}`)
+          .then((res) => res.json())
+          .then((data) => {
+            setproblemData(data);
+            console.log(data); 
+          })
+          .catch((error) => {
+            console.error('Error fetching problem data:', error);
+          });
+      }, [problemId]);
   return (
     <main>
+        <Topbar></Topbar>
         <header class = "probsolve">
-            <h1>name of problem</h1>
-            <nav><a href="#" class = "style-link" >Tags</a></nav>
+            <h1>{problemData.title}</h1>
         </header>
         <div class = "probsec">
             <section class="probdetails">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit delectus enim illum ipsa pariatur odit excepturi atque, odio distinctio iusto facere aut praesentium. A dolorem accusantium rerum, recusandae hic voluptatem.</p>
+                <h2>Description:</h2>
+                <p>{problemData.desc}</p>
                 <br />
                 <nav>
-                    <p>constraints:</p>
+                    <p>Time Limit: {problemData.timelim}s</p>
                     <p>input:</p>
                     <p>output:</p>
                 </nav>
@@ -25,7 +43,7 @@ export default function Solve() {
                     <option value="java">Java</option>
                     <option value="py">Python</option>
                 </select>
-                <textarea name="code" id="" cols="80" rows="40"></textarea>
+                <textarea name="code" id="" cols="60" rows="20"></textarea>
                 <div class="buttons">
                     <button>compile & run</button>
                     <button>Sumbit</button>
