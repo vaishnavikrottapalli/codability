@@ -3,13 +3,13 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from 'axios';
 import moment from 'moment';
-import "./solve.css"
-
+import "./solve.css";
 
 export default function Solve() {
     const [problemData, setproblemData] = useState([]);
     const { problemId } = useParams();
     const [code, setCode] = useState("");
+    const [input, setInput] = useState("");
     const [language, setLanguage] = useState("cpp");
     const [output, setOutput] = useState("");
     const [status, setStatus] = useState("");
@@ -18,7 +18,8 @@ export default function Solve() {
     const handleCompileRun = async() =>{
         const payload = {
             language,
-            code
+            code,
+            input
         };
         try {
             setStatus("");
@@ -26,7 +27,7 @@ export default function Solve() {
             setSubmitDetails("");
             const {data} = await axios.post('http://localhost:5000/run', payload);
             // console.log("data:" ,data);
-            // setOutput(data.submissionId);
+            setOutput(data.output);
             console.log(data.submissionId)
             let intervalId;
 
@@ -56,8 +57,9 @@ export default function Solve() {
 
         } catch ({response}) {
             if(response){
-                const errMsg = response.data.error.stderr;
+                const errMsg = response.data.err.stderr;
                 setOutput(errMsg);
+                setStatus("error")
             } else{
                 setOutput("error connecting to server!")
             }           
@@ -140,6 +142,12 @@ export default function Solve() {
                 <label>Execution Time: </label>
                 <p>{renderTimeDetails()}</p>
 
+                <label>Input: </label>
+                <textarea name="input" id="" cols="30" rows="5" value={input}
+                    onChange={(e) =>{
+                        setInput(e.target.value);
+                    }}
+                ></textarea>
                 <label>Output</label>
                 <textarea name="" id="" cols="30" rows="5" value={output}></textarea>
             </section>
