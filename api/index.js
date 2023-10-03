@@ -14,19 +14,21 @@ const corsOptions = {
     origin: '*', // or specify your frontend URL like 'http://localhost:3000'
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   };
+app.use(cors());
 app.use(cors(corsOptions));
+app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URL,{
     useNewUrlParser: true,
     useUnifiedTopology: true
-})
+}) 
 .then(console.log("connected to MongoDB"))
 .catch((err) => console.log(err));
 
 app.use("/api/auth",authRoute);
 app.use("/api/users",userRoute);
-app.use("/api/submissions",submissionRoute);
+app.use("/run",submissionRoute);
 app.use("/api/problems",problemRoute);
 app.use("/api/testcases",testcaseRoute);
 

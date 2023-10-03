@@ -24,7 +24,7 @@ export default function Home() {
   return (
     <div class="home">
       <Topbar></Topbar>
-      <div class="topbar-placeholder"></div>
+      <div className="topbar-placeholder"></div>
       <h2 className="heading">PROBLEMS</h2>
       <div className="content-container" style={{ backgroundColor: "#dcdcdc" }}>
         <table id="problem-table">

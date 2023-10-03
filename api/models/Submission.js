@@ -32,15 +32,29 @@ const SubmissionSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    code:{
+    filepath:{
         type: String,
         required: true
     },
-    verdict:{
+    submittedAt:{
+        type: Date,
+        default: Date.now
+    },
+    startedAt:{
+        type: Date
+    },
+    completedAt:{
+        type: Date
+    },
+    output:{
+        type: String
+    },
+    status:{
         type: String,
-        required: true
+        default:"pending",
+        enum: ["pending", "success", "error"]
+        
     }
-},
-{timestamps: true}
+}
 );
 module.exports = mongoose.model("Submission", SubmissionSchema);

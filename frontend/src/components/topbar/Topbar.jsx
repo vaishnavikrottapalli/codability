@@ -14,7 +14,6 @@ export default function Topbar() {
                     <Link className="about-contact" to="/">Problems</Link>
                     <Link className="about-contact" to="/contribute">Contribute</Link>
                     <Link className="about-contact" to="/about">About</Link>
-                    <Link className="about-contact" to="/contactus">Contact Us</Link>
                     <button className="btn" id="signupBtn"> Sign out </button>
                 </div>
             </header>
