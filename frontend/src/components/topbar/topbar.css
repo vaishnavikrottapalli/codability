@@ -14,7 +14,9 @@
     align-items: center;
     z-index: 99;
 }
-
+ul{
+    display: flex;
+}
 .header Link{
     font-size: 2em;
     color: white;
@@ -25,6 +27,7 @@
     font-size: 1.2em;
     margin-left: 40px;
     color: white;
+    cursor: pointer;
 }
 
 .header .nav-button .btn{

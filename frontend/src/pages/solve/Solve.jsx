@@ -1,25 +1,52 @@
 import Topbar from "../../components/topbar/Topbar";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
+import { Context } from "../../context/Context";
 import axios from 'axios';
 import moment from 'moment';
 import "./solve.css";
 
 export default function Solve() {
+    const { user } = useContext(Context)
+    const uname = user.username;
+    const userId = user._id;
     const [problemData, setproblemData] = useState([]);
     const { problemId } = useParams();
+    const probtitle = problemData.title;
+    const probAuthorId = problemData.userID;
     const [code, setCode] = useState("");
     const [input, setInput] = useState("");
     const [language, setLanguage] = useState("cpp");
     const [output, setOutput] = useState("");
     const [status, setStatus] = useState("");
     const [submitDetails, setSubmitDetails] = useState(null);
-    
+    console.log("proble data is: ",problemData);
+    let canEdit = false;
+    if (problemData.userID === userId){
+        canEdit = true;
+    }
+    const handleDelete = async()=>{
+        const res = await axios.delete(`http://localhost:5000/api/problems/${problemId}?userID=${probAuthorId}`);
+        window.location.replace("http://localhost:3000/");
+        console.log(res);
+    }
+    const handleSubmitCode = async() =>{
+        const subload = {
+            problemId,
+            language,
+            code           
+        };
+        const {tcdata} = await axios.post('http://localhost:5000/run/submit', subload);
+        console.log(tcdata);
+    };
     const handleCompileRun = async() =>{
         const payload = {
+            uname,
+            userId,
+            probtitle,
             language,
             code,
-            input
+            input           
         };
         try {
             setStatus("");
@@ -28,6 +55,7 @@ export default function Solve() {
             const {data} = await axios.post('http://localhost:5000/run', payload);
             // console.log("data:" ,data);
             setOutput(data.output);
+
             console.log(data.submissionId)
             let intervalId;
 
@@ -101,6 +129,7 @@ export default function Solve() {
         <Topbar></Topbar>
         <header className = "probsolve">
             <h1>{problemData.title}</h1>
+            {canEdit && <button onClick={handleDelete}>delete</button>}
         </header>
         <div className = "probsec">
             <section className="probdetails">
@@ -124,7 +153,6 @@ export default function Solve() {
                 }>
                     <option value="cpp">C++</option>
                     <option value="py">Python</option>
-                    <option value="java">Java</option>
                 </select>
                 <textarea name="code" id="editor" cols="75" rows="20" 
                 value={code}
@@ -135,7 +163,7 @@ export default function Solve() {
                 <br />
                 <div className="buttons">
                     <button onClick={handleCompileRun}>compile & run</button>
-                    <button>Sumbit</button>
+                    <button onClick={handleSubmitCode}>Sumbit</button>
                 </div>
                 <label>Status: </label>
                 <p>{status}</p>

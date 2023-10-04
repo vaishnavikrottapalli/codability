@@ -4,17 +4,9 @@ const ProblemSchema = new mongoose.Schema({
     username:{
         type: String,
         required: true,
-        validate: {
-            validator: async function (value) {
-              const user = await mongoose.model('User').findOne({ username: value });
-              return !!user;
-            },
-            message: 'Invalid username. No user found with this name.',
-          },
     },
     userID:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        type: mongoose.Types.ObjectId,
         required: true,
     },
     title:{
@@ -34,12 +26,12 @@ const ProblemSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    timelim:{
-        type: Number,
+    input:{
+        type: Array,
         required: true
     },
-    memlim:{
-        type: Number,
+    output:{
+        type: Array,
         required: true
     }
 },

@@ -1,12 +1,13 @@
 const router = require("express").Router();
 const Submission = require("../models/Submission");
+const Problem = require("../models/Problem");
 const User = require("../models/User");
 const {generateFile} = require('../generateFile')
 const {executeCpp} = require('../executeCpp')
 const {executePy} = require('../executePy')
 
 router.post("/", async(req,res) =>{
-    const {language = 'cpp', code, input} = req.body;
+    const {uname, userId, probtitle, language = 'cpp', code, input} = req.body;
     // console.log(req.body);
     if (!code){
         return res.status(400).json({success: false, error: "empty code body."});
@@ -17,9 +18,10 @@ router.post("/", async(req,res) =>{
         newSubmission = await new Submission({
             language, 
             filepath: filePath.toString(), 
-            title:"sum of 2 nums",
-            userID:"6516696c11c25b7b6780a67e", 
-            username:"uma"}
+            title: probtitle.toString(),
+            userID: userId, 
+            username:uname
+        }
         ).save();
         // console.log(newSubmission);
         const submissionId = newSubmission["_id"];
@@ -48,6 +50,44 @@ router.post("/", async(req,res) =>{
         res.status(500).json({err});
     }
 });
+
+//run test case-
+
+router.post("/submit", async(req,res) =>{
+    console.log("sumit request received : ", req.body)
+    const {problemId: probId, language = 'cpp', code} = req.body;
+    if (!code){
+        return res.status(400).json({success: false, error: "empty code body."});
+    }
+    try{
+        const filePath = await generateFile(language, code);
+        let output, passCount = 0;
+        const problem = await Problem.findById(req.body.problemId);
+        console.log("problem is: ", problem,req.body.problemId)
+        const expectedOutputs = problem.output;
+        for (let i = 0; i < problem.input.length; i++) {
+            const input = problem.input[i];      
+            if (language === "cpp") {
+              output = await executeCpp(filePath, input);
+            } else if (language === "py") {
+              output = await executePy(filePath, input);
+              console.log(output);
+            }
+            output = output.replace(/\r\n$/, '');
+            // Compare the code's output with the expected output
+            console.log("output is: ", JSON.stringify(output), " ",JSON.stringify(expectedOutputs[i]));
+            passCount += JSON.stringify(output) === JSON.stringify(expectedOutputs[i]);
+        }
+        const allPass = passCount === problem.input.length;
+        console.log(allPass)
+        res.status(201).json({success: true, allPass});       
+
+    } catch(err){
+
+    }
+
+});
+
 
 //Get Submission
 

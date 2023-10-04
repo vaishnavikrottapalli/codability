@@ -1,11 +1,13 @@
 import Topbar from "../../components/topbar/Topbar";
+import { Context } from "../../context/Context";
 import "./home.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 
 export default function Home() {
-
   const [problems, setProblems] = useState([]);
+  const { user } = useContext(Context)
+  const username = user.username;
 
   useEffect(() =>{
     fetch("http://localhost:5000/api/problems")
@@ -22,9 +24,10 @@ export default function Home() {
     console.log("use effect running");
   },[]);
   return (
-    <div class="home">
+    <div className="home-problems">
       <Topbar></Topbar>
       <div className="topbar-placeholder"></div>
+      <h2>Hello {username}</h2>
       <h2 className="heading">PROBLEMS</h2>
       <div className="content-container" style={{ backgroundColor: "#dcdcdc" }}>
         <table id="problem-table">

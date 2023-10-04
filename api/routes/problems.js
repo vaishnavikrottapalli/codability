@@ -18,13 +18,14 @@ router.post("/", async(req,res)=>{
 //Delete
 
 router.delete("/:id", async(req,res)=>{ 
+    console.log("delete req received");
     try {
         const problem = await Problem.findById(req.params.id);
-        console.log(problem);
-        console.log(req.body);
+        // console.log(problem);
+        // console.log(req.body);
         const id = problem.userID.toString();
-        console.log(id, req.body.userID);
-        if(id === req.body.userID){
+        console.log(id, req.query.userID);
+        if(id === req.query.userID){
             try{
                 await Submission.deleteMany({title: problem.title});
                 await Problem.findByIdAndDelete(req.params.id);

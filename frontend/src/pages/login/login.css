@@ -49,7 +49,7 @@
     color: white;
 }
 
-.header .nav-button .btn{
+/* .header .nav-button .btn{
     width: 90px;
     height: 35px;
     color: white;
@@ -59,7 +59,7 @@
     cursor: pointer;
     transition: .3s ease;
     margin-left: 30px;
-}
+} */
 
 .form-box{
     position: relative;
@@ -152,6 +152,9 @@
 
 .btn:hover{
     background: rgb(100, 83, 104);
+}
+.btn :disabled{
+    cursor: not-allowed;
 }
 .wrapper-login .register-link{
     font-size: .9em;

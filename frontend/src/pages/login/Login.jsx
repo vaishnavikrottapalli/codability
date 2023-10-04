@@ -1,9 +1,28 @@
 import "./login.css";
 import { Link } from "react-router-dom";
 import Signup from "../signup/Signup";
-import { useState } from "react";
+import axios from "axios";
+import { useContext, useRef, useState } from "react";
+import { Context } from "../../context/Context";
 
 export default function Login() {
+  const emailRef = useRef()
+  const passwordRef = useRef()
+  const {dispatch, isFetching} = useContext(Context)
+
+  const handleSubmit = async (e) =>{
+    e.preventDefault()
+    dispatch({type:"LOGIN_START"});
+    try {
+      const res = await axios.post("http://localhost:5000/api/auth/login", {
+        email: emailRef.current.value,
+        password: passwordRef.current.value,
+      })
+      dispatch({type:"LOGIN_SUCCESS", payload: res.data});
+    } catch (err) {
+      dispatch({type:"LOGIN_FAILURE"});
+    }
+  };
   return (
     <div className="wrapper">
       <header className="header">
@@ -12,18 +31,15 @@ export default function Login() {
           CodeVerse
         </a>
         <div className="nav-button">
+          <Link className="about-prob" to="/about">
+            About Us
+          </Link>
+          <Link className="about-prob" to="/">
+            Problems
+          </Link>
           <Link className="about-prob" to="/signup">
             Signup
           </Link>
-          <a href="#" className="about-prob">
-            About Us
-          </a>
-          <a href="#" className="about-prob">
-            Problems
-          </a>
-          <button className="btn" id="signupBtn">
-            Sign Up
-          </button>
         </div>
       </header>
       <section className="home">
@@ -39,22 +55,22 @@ export default function Login() {
         <div className="form-box">
           <div className="wrapper-login" id="login">
             <h2>Login</h2>
-            <form action="#">
+            <form onSubmit={handleSubmit}>
               <div className="input-box">
                 <span className="icon">
                   <ion-icon name="mail"></ion-icon>
                 </span>
-                <input type="email" required />
+                <input type="email" ref={emailRef} required />
                 <label>Email ID</label>
               </div>
               <div className="input-box">
                 <span className="icon">
                   <ion-icon name="lock-closed"></ion-icon>
                 </span>
-                <input type="password" required />
+                <input type="password" ref={passwordRef} required />
                 <label>Password</label>
               </div>
-              <button type="submit" className="btn">
+              <button type="submit" className="btn" disabled={isFetching}>
                 Login
               </button>
               <div className="register-link">
