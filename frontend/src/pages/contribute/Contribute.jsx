@@ -39,44 +39,46 @@ export default function Contribute() {
     }
   }
   return (
-    <div className = "wrapper">
-        <Topbar></Topbar>
-        <div className="topbar-placeholder"></div>
+    <>
+    <Topbar></Topbar>
+    <div className = "wrapper">      
+      <div className="topbar-placeholder"></div>
         <h2>Contribute</h2>
         <br />
         <p>Hey Geeks,<br></br> Want to contribute problems to our community and challenge you fellow geeks?
         <br /> GO Ahead! We give you full fuel!!</p>
-        <form className = "forminp" onSubmit={handleSubmit}>
-            <label>Title</label>
-            <textarea cols="30" rows="2" onChange={(e)=>setTitle(e.target.value)} ></textarea>
-            <span>Difficulty: </span>
-            <select name="difficulty" value={difficulty} onChange={e=>setDifficulty(e.target.value)}>
-              <option value="easy">Easy</option>
-              <option value="medium">Medium</option>
-              <option value="hard">Hard</option>
-            </select>
-            <label>Tags</label>
-            <textarea cols="30" rows="2" onChange={(e)=>{
-              const tagsArray = e.target.value.split(',').map(tag => tag.trim());
-              setTags(tagsArray)
-            }}>
-            </textarea>
-            
-            <label>Description</label>
-            <textarea cols="80" rows="15" onChange={e=>setDesc(e.target.value)}></textarea>            
-            <label>Input</label>
-            <textarea cols="80" rows="10" onChange={(e)=>{
-                const tagsArray = e.target.value.split(',').map(inp => inp.trim());
-                setInput(tagsArray);
-            }}></textarea>
-            <label>Output</label>
-            <textarea cols="80" rows="5"onChange={(e)=>{
-                const tagsArray = e.target.value.split(',').map(op => op.trim());
-                setOutput(tagsArray);
-            }}></textarea>
-            <button type='submit'>Submit</button>
+      <form className = "forminp" onSubmit={handleSubmit}>
+          <label>Title</label>
+          <textarea cols="30" rows="2" onChange={(e)=>setTitle(e.target.value)} ></textarea>
+          <span>Difficulty: </span>
+          <select name="difficulty" value={difficulty} onChange={e=>setDifficulty(e.target.value)}>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+          <label>Tags</label>
+          <textarea cols="30" rows="2" onChange={(e)=>{
+            const tagsArray = e.target.value.split(',').map(tag => tag.trim());
+            setTags(tagsArray)
+          }}>
+          </textarea>
+          
+          <label>Description</label>
+          <textarea cols="80" rows="15" onChange={e=>setDesc(e.target.value)}></textarea>            
+          <label>Input</label>
+          <textarea cols="80" rows="10" onChange={(e)=>{
+              const tagsArray = e.target.value.split(',').map(inp => inp.trim());
+              setInput(tagsArray);
+          }}></textarea>
+          <label>Output</label>
+          <textarea cols="80" rows="5"onChange={(e)=>{
+              const tagsArray = e.target.value.split(',').map(op => op.trim());
+              setOutput(tagsArray);
+          }}></textarea>
+          <button type='submit'>Submit</button>
 
-        </form>
+      </form>
     </div>
+  </>
   )
 }

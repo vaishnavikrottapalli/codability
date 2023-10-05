@@ -45,31 +45,24 @@ export default function Signup() {
     }
   };
   return (
-    <div className="wrapper">
-      <header className="header">
-        <a href="#" className="logo">
-          <ion-icon name="rocket-sharp"></ion-icon>
-          CodeVerse
-        </a>
+    <div className="wrapper-signup">
+      <header className="topbar-signup">
+        <h2>CodeVerse</h2>
         <div className="nav-button">
-          <Link className="about-contact" to="/about">
+          <Link className="topright-signup" to="/about">
             About Us
           </Link>
-          <Link className="about-contact" to="/">
-            Problems
-          </Link>
-          <Link className="about-contact" to="/login">
+          <Link className="topright-signup" to="/login">
             Login
           </Link>
         </div>
       </header>
       <section className="home-signup">
-            <div className="content">
-                <h2>A Coder's Universe</h2>
-                <p> Welcome to the zone where coding prowess meets challenges head-on! </p>
-                    
-                <h3>Are you up for the challenge?</h3>
-            </div>
+        <div className="content">
+            <h2>A Coder's Universe</h2>
+            <p> Welcome to the zone where coding prowess meets challenges head-on! </p>
+            <h3>Are you up for the challenge?</h3>
+        </div>
         <div className="form-box">
           <div className="wrapper-login" id="login">
               <h2>Sign Up</h2>

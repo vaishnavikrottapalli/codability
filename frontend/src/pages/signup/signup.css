@@ -17,6 +17,10 @@
     padding: 80px 40px 0;
 }
 .home-signup .content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     max-width: 600px;
     color: white;
 }
@@ -27,38 +31,30 @@
     font-size: 3em;
     letter-spacing: .03em;
 }
-.header {
+.topbar-signup {
     width: 100%;
     padding: 15px 100px;
     position: fixed; 
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: none;
     z-index: 99;
 }
 
-.header a{
-    font-size: 2em;
+.topbar-signup > h2{
+    font-size: 1.5em;
     color: white;
-    text-decoration:double;
+    background-color: rgb(31, 16, 31);
+    padding: 9px;
+    border: 1px solid antiquewhite;
 }
 
-.header .nav-button .about-contact{
+.topbar-signup > .nav-button .topright-signup{
     font-size: 1.2em;
-    margin-left: 40px;
+    margin-left: 35px;
     color: white;
-}
-
-.header .nav-button .btn{
-    width: 90px;
-    height: 35px;
-    color: white;
-    font-weight: 500;
-    background: rgb(52, 43, 61);
-    border: none;
-    cursor: pointer;
-    transition: .3s ease;
-    margin-left: 30px;
+    text-decoration: none;
 }
 
 .form-box{

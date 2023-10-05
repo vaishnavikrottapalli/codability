@@ -10,19 +10,15 @@ export default function Topbar() {
     }
     return (
         <div className="top">
-            <header className="header">
-                <a href="#" className="logo">
-                <ion-icon name="rocket-sharp"></ion-icon>
-                CodeVerse
-                </a>
+            <header className="header-topbar">
+                <h2>CodeVerse</h2>
+                <div className='top-center'>
+                    <Link className="about" to="/">Problems</Link>
+                    <Link className="about" to="/contribute">Contribute</Link>
+                    <Link className="about" to="/about">About</Link>
+                </div>
                 <div className="nav-button">
-                    <ul>
-                        <li><Link className="about-contact" to="/">Problems</Link></li>
-                        <li><Link className="about-contact" to="/contribute">Contribute</Link></li>
-                        <li><Link className="about-contact" to="/about">About</Link></li>
-                        <li className='about-contact' onClick={handleLogout} to="/login">{user && "Logout"}</li>
-                    </ul>
-                    
+                    <Link className='about-contact' onClick={handleLogout} to="/login">{user && "Logout"}</Link>
                 </div>
             </header>
         </div>

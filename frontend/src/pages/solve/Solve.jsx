@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { Context } from "../../context/Context";
 import axios from 'axios';
 import moment from 'moment';
+import Editor from "@monaco-editor/react"
 import "./solve.css";
 
 export default function Solve() {
@@ -39,6 +40,10 @@ export default function Solve() {
         const {tcdata} = await axios.post('http://localhost:5000/run/submit', subload);
         console.log(tcdata);
     };
+
+    const handleEditorChange = (newValue, e) => {
+        setCode(newValue);
+      };
     const handleCompileRun = async() =>{
         const payload = {
             uname,
@@ -129,22 +134,17 @@ export default function Solve() {
         <Topbar></Topbar>
         <header className = "probsolve">
             <h1>{problemData.title}</h1>
-            {canEdit && <button onClick={handleDelete}>delete</button>}
+            
         </header>
         <div className = "probsec">
             <section className="probdetails">
-                <h2>Description:</h2>
+                <h2 className="sec-name">Problem Story</h2>
+                {canEdit && <button onClick={handleDelete}>delete</button>}
                 <p>{problemData.desc}</p>
                 <br />
-                <nav>
-                    <p>Time Limit: {problemData.timelim}s</p>
-                    <p>input:</p>
-                    <p>output:</p>
-                </nav>
             </section>
-
             <section className = "codesec">
-                <select name="languages" id="lang" value={language}
+                <select className ="lang-dd"name="languages" id="lang" value={language}
                 onChange={
                     (e) => {
                         setLanguage(e.target.value);
@@ -154,29 +154,32 @@ export default function Solve() {
                     <option value="cpp">C++</option>
                     <option value="py">Python</option>
                 </select>
-                <textarea name="code" id="editor" cols="75" rows="20" 
-                value={code}
-                onChange={(e) =>{
-                    setCode(e.target.value);
-                }}
-                ></textarea>
+                <Editor className="editorbox"
+                    height = ""
+                    // witdh = "100%"
+                    theme="vs-dark"
+                    
+                    value={code}
+                    onChange={handleEditorChange}
+                    options={{
+                        selectOnLineNumbers: true,
+                        folding: true,
+                    }}
+                />
                 <br />
                 <div className="buttons">
-                    <button onClick={handleCompileRun}>compile & run</button>
+                    <button onClick={handleCompileRun}>Compile & Run</button>
                     <button onClick={handleSubmitCode}>Sumbit</button>
                 </div>
-                <label>Status: </label>
-                <p>{status}</p>
-                <label>Execution Time: </label>
-                <p>{renderTimeDetails()}</p>
-
-                <label>Input: </label>
+                <label className="execution-details">Status: {status}</label>
+                <label className="execution-details">Execution Time: {renderTimeDetails()} </label>
+                <label className="execution-details">Input: </label>
                 <textarea name="input" id="" cols="30" rows="5" value={input}
                     onChange={(e) =>{
                         setInput(e.target.value);
                     }}
                 ></textarea>
-                <label>Output</label>
+                <label className="execution-details">Output: </label>
                 <textarea name="" id="" cols="30" rows="5" value={output}></textarea>
             </section>
         </div>

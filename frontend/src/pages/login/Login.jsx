@@ -24,25 +24,19 @@ export default function Login() {
     }
   };
   return (
-    <div className="wrapper">
-      <header className="header">
-        <a href="#" className="logo">
-          <ion-icon name="rocket-sharp"></ion-icon>
-          CodeVerse
-        </a>
+    <div className="wrapper-login"> 
+      <header className="header-login">
+          <h2 className="logo">CodeVerse</h2>
         <div className="nav-button">
-          <Link className="about-prob" to="/about">
+          <Link className="topright-login" to="/about">
             About Us
           </Link>
-          <Link className="about-prob" to="/">
-            Problems
-          </Link>
-          <Link className="about-prob" to="/signup">
+          <Link className="topright-login" to="/signup">
             Signup
           </Link>
         </div>
       </header>
-      <section className="home">
+      <section className="home-login">
         <div className="content">
           <h2>A Coder's Universe</h2>
           <p>

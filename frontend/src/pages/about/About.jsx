@@ -36,10 +36,6 @@ export default function About() {
         <h2>Team</h2>
         <p>
           <strong>vaishnavi</strong> - Project Developer
-          <br />
-          LinkedIn- <a href="https://www.google.com/">Profile</a>
-          <br />
-          GitHub- <a href="https://www.google.com/">Repo</a>
         </p>
     </div>
     </>

@@ -1,7 +1,20 @@
 .home-problems {
-    background-color: #dcdcdc;
+    background-color: #424344; /* Blue color of your choice */
+    min-height: 100vh;
     margin: 0; 
-    padding: 0; 
+    padding: 0;   
+}
+.prob-section .hello-name{
+    font-size: 1.3em;
+    margin-top: 6vh;
+    margin-bottom: 10vh;
+    text-align: center;
+    color: rgb(162, 158, 158);
+    font-weight: lighter;
+    padding: 5px;
+    margin-left: 10%;
+    margin-right: 10%;
+    box-shadow: 0px 0 3px rgb(137, 135, 135);
 }
 .table-container {
     max-width: 800px; /* Adjust the max width as needed */
@@ -12,37 +25,50 @@
     text-align: center;
     padding: 20px;
 }
-.topbar-placeholder {
-    height: 80px; 
-}
+
 table {
     margin-left: auto;
     margin-right: auto;
     width: 70%;
     border-collapse: collapse;
-    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+    box-shadow: rgba(192, 181, 181, 0.844) 0px 1px 6px, rgba(255, 254, 254, 0.634) 0px 0px 6px;
 }
 .thead{
-    font-size: large;
-    color: black;
+    font-size: 1.2em;
+    font-weight:lighter;
+    color: whitesmoke;
 }
 
 th, td {
-    border: 1px solid #dcdcdc;
+    /* border: 1px solid #dcdcdc; */
     padding: 8px;
     text-align: center;
+    
 }
 
 th {
-    background-color: grey;
+    background-color: rgb(90, 89, 89);;
+    border-radius: 5px;
 }
 
 tr:nth-child(even) {
-    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+tr:nth-child(odd) {
+    background-color: #9d9393ae;
+    border-radius: 5px;
+    
+}
+
+tr:hover{
+    -moz-box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.8);
+    -webkit-box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.8);
 }
 
 .tag {
-    background-color: #007bff;
+    background-color: #556f8c;
     color: #fff;
     padding: 4px 8px;
     margin-left: 3px;
@@ -50,8 +76,7 @@ tr:nth-child(even) {
 }
 
 .difficulty {
-    color: black
-    ;
+    color: black;
 }
 
 .status {
@@ -64,5 +89,6 @@ tr:nth-child(even) {
 }
 
 .link:hover{
-    color: blue;
+    color: white;
+    transition: 0.2s;
 }
