@@ -85,3 +85,15 @@
 .style-link:hover{
     color: black;
 }
+
+.tc-data-true{
+    font-size: 1.5em;
+    color: rgb(11, 224, 11);
+    font-weight: bold;
+}
+
+.tc-data-false{
+    font-size: 1.5em;
+    color: rgb(247, 30, 30);
+    font-weight: bold;
+}

@@ -71,7 +71,7 @@ router.post("/submit", async(req,res) =>{
               output = await executeCpp(filePath, input);
             } else if (language === "py") {
               output = await executePy(filePath, input);
-              console.log(output);
+            //   console.log("output is: ", output);
             }
             output = output.replace(/\r\n$/, '');
             // Compare the code's output with the expected output
@@ -80,7 +80,7 @@ router.post("/submit", async(req,res) =>{
         }
         const allPass = passCount === problem.input.length;
         console.log(allPass)
-        res.status(201).json({success: true, allPass});       
+        res.status(201).json({success: true, allPass});  
 
     } catch(err){
 

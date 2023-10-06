@@ -29,13 +29,16 @@ header {
 h2 {
     font-size: 30px;
     text-align: center;
+    color: white;
 }
 
 p {
     font-size: 18px;
     line-height: 1.5;
     text-align: center;
+    color: rgb(154, 148, 148);
 }
 li{
     list-style: none;
+    color: rgb(154, 148, 148);
 }

@@ -21,6 +21,9 @@ export default function Solve() {
     const [output, setOutput] = useState("");
     const [status, setStatus] = useState("");
     const [submitDetails, setSubmitDetails] = useState(null);
+
+    const [tcDataResult, setTcDataResult] = useState(null);
+
     console.log("proble data is: ",problemData);
     let canEdit = false;
     if (problemData.userID === userId){
@@ -37,8 +40,9 @@ export default function Solve() {
             language,
             code           
         };
-        const {tcdata} = await axios.post('http://localhost:5000/run/submit', subload);
-        console.log(tcdata);
+        const tcdata = await axios.post('http://localhost:5000/run/submit', subload);
+        console.log("tcdata", tcdata);
+        setTcDataResult(tcdata.data.allPass);
     };
 
     const handleEditorChange = (newValue, e) => {
@@ -70,7 +74,7 @@ export default function Solve() {
                     {params:{id: data.submissionId,}}
                 );
                 const{success, submission, error} = dataRes;
-                console.log(dataRes);
+                console.log("dataRes");
 
                 if(success){
                     const {status: submitStatus, output: submitOutput} = submission;
@@ -125,8 +129,6 @@ export default function Solve() {
         const exeTime = end.diff(start, 'seconds', true);
         exeResult += `Execution Time: ${exeTime}s`
         return exeResult;
-
-        
     }
 
   return (
@@ -170,6 +172,10 @@ export default function Solve() {
                 <div className="buttons">
                     <button onClick={handleCompileRun}>Compile & Run</button>
                     <button onClick={handleSubmitCode}>Sumbit</button>
+                </div>
+                <div className="tc-data-box">
+                    {tcDataResult === true && <span className="tc-data-true">All Test cases passed</span>}
+                    {tcDataResult === false && <span className="tc-data-false">Re-Try! Re-think! Re-Submit</span>}
                 </div>
                 <label className="execution-details">Status: {status}</label>
                 <label className="execution-details">Execution Time: {renderTimeDetails()} </label>
